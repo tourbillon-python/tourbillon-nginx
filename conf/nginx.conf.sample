@@ -1,0 +1,10 @@
+{
+	"database": {
+		"name": "nginx",
+		"duration": "365d",
+		"replication": "1"
+	},
+	"url": "http://localhost/status",
+	"frequency": 1,
+	"host": "localhost",
+}
