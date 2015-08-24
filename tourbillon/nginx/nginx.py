@@ -11,13 +11,14 @@ logger = logging.getLogger(__name__)
 def get_nginx_status(agent):
     yield from agent.run_event.wait()
     config = agent.pluginconfig['nginx']
+    db_config = config['database']
     try:
         logger.debug('try to create the database...')
-        agent.create_database('nginx')
-        agent.create_retention_policy('nginx_rp',
-                                      '365d',
-                                      '1',
-                                      'nginx')
+        agent.create_database(db_config['name'])
+        agent.create_retention_policy('{}_rp'.format(db_config['name']),
+                                      db_config['duration'],
+                                      db_config['replication'],
+                                      db_config['name'])
         logger.info('database "%s" created successfully', 'nginx')
     except:
         pass
@@ -53,6 +54,6 @@ def get_nginx_status(agent):
                     'waiting': int(waiting)
                 }
             }]
-            yield from agent.async_push(data, 'nginx')
+            yield from agent.async_push(data, db_config['name'])
 
     logger.info('get_nginx_status terminated')
