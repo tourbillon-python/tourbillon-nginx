@@ -12,16 +12,7 @@ def get_nginx_status(agent):
     yield from agent.run_event.wait()
     config = agent.pluginconfig['nginx']
     db_config = config['database']
-    try:
-        logger.debug('try to create the database...')
-        agent.create_database(db_config['name'])
-        agent.create_retention_policy('{}_rp'.format(db_config['name']),
-                                      db_config['duration'],
-                                      db_config['replication'],
-                                      db_config['name'])
-        logger.info('database "%s" created successfully', 'nginx')
-    except:
-        pass
+    yield from agent.async_create_database(**db_config)
 
     while agent.run_event.is_set():
         yield from asyncio.sleep(config['frequency'])
