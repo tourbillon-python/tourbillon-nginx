@@ -1,10 +1,10 @@
-.. Tourbillon Nginx Plugin documentation master file, created by
+.. Tourbillon Redis Plugin documentation master file, created by
    sphinx-quickstart on Mon Aug 24 10:12:29 2015.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Tourbillon Nginx Plugin's documentation!
-====================================================
+Welcome to the tourbillon-nginx's |release| documentation!
+==========================================================
 
 Contents:
 
@@ -12,11 +12,9 @@ Contents:
    :maxdepth: 2
 
    about
+   install
+   configure
+   measurements
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
